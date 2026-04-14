@@ -22,9 +22,18 @@ public class Main {
             new Aluno("Ana",8)
         );
 
+       System.out.println("Aprovados:");
         alunos.stream()
                 .filter(a -> a.getNota() >= 7)
                 .map(Aluno::getNome)
-                .reduce(null, null);
+                .forEach(System.out::println);
+
+        
+        double media = alunos.stream()
+                .mapToDouble(Aluno::getNota)
+                .average()
+                .orElse(0.0);
+
+        System.out.println("Média da turma: " + media);
     }
 }
